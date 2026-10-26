@@ -66,3 +66,11 @@ research/lingang-2027/
 ```text
 python scripts/research_workbench.py dashboard --project <项目目录> --title "<报告标题>" --output <项目目录>/output/<报告标题>.html
 ```
+
+## 许可证与使用范围
+
+- 原创源代码、脚本、Skill 说明、文档和 HTML 模板采用 [MIT License](./LICENSE)。
+- 对 Yuchen-zero 拥有可保护权利的原创数据选择、结构、注释和派生汇总表，采用 [CC BY 4.0](./DATA_LICENSE.md)。
+- 招聘广告、招聘平台内容、租房房源、政府原始文件、第三方仓库内容和商标等不在这两项授权范围内，继续适用原来源条款。详见 [NOTICE](./NOTICE)。
+
+转载或再使用数据时，请保留来源链接、数据截止日、许可证说明和所做的修改。第三方内容的授权状态必须逐项回到原始来源核对。
