@@ -1,0 +1,7 @@
+﻿city,district,food_monthly,commute_monthly,water_monthly,electricity_monthly,gas_monthly,internet_monthly,other_fixed_monthly,source_url,published_at,collected_at,evidence_level,notes
+上海,临港,1500,160,16.2,61.7,18,50,300,https://www.shobserver.cn/sgh/detail?id=1695525,2026-01-14,2026-10-26,C,合租个人分摊；餐饮低档1500元=8+18+20元/日×30，不含优惠券；水4m³、电100kWh/2人、气6m³/2人、网50元/人。
+上海,临港,2100,160,16.2,61.7,18,50,300,https://www.shobserver.cn/sgh/detail?id=1695525,2026-01-14,2026-10-26,C,主情景；餐饮2100元=70元/日×30；其他固定300元含手机、清洁和个人用品，未含旅行/医疗。
+上海,临港,2800,160,16.2,61.7,18,50,300,https://sh.58.com/lingangxinc/kuaican/list_25/,2026-10-26,2026-10-26,C,外卖高频情景；约93元/日×30，按单餐商品20-35元加配送/包装2-9元组合，不假定长期优惠券。
+上海,临港,1500,160,16.2,74.04,18,100,300,https://www.shobserver.cn/sgh/detail?id=1695525,2026-01-14,2026-10-26,C,整租个人承担；水4m³、电120kWh、气6m³、网100元；餐饮低档1500元。
+上海,临港,2100,160,16.2,74.04,18,100,300,https://www.shobserver.cn/sgh/detail?id=1695525,2026-01-14,2026-10-26,C,整租主情景；餐饮2100元；其他固定300元；未含旅游、医疗和家电一次性支出。
+上海,临港,2800,160,16.2,74.04,18,100,300,https://sh.58.com/lingangxinc/kuaican/list_25/,2026-10-26,2026-10-26,C,整租外卖高频情景；水电气按官方单价和透明用量计算，餐饮为模型篮子。

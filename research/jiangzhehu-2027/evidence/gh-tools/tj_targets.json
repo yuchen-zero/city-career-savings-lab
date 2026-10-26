@@ -1,0 +1,45 @@
+{
+  "上海": {
+    "居民收入消费": "https://tjj.sh.gov.cn/tjfx/20250121/304b193138e946df873311fb607c587b.html",
+    "统计公报2025": "https://tjj.sh.gov.cn/tjgb/20260330/e0772941e8e041eaaad2df850b44ef98.html"
+  },
+  "南京": {
+    "统计公报2025": "https://tjj.nanjing.gov.cn/bmfw/njsj/202604/t20260403_5818444.html"
+  },
+  "无锡": {
+    "工资公报2025": "http://tj.wuxi.gov.cn/doc/2026/07/08/4801556.shtml"
+  },
+  "徐州": {
+    "统计公报2025": "http://tj.xz.gov.cn/govxxgk/01405176-5/2026-06-17/f2a59a95-a040-450c-9115-2e2cdb43040e.html",
+    "统计公报2024": "http://tj.xz.gov.cn/govxxgk/01405176-5/2025-04-08/a5bc7994-28b0-4d15-8a70-48e8841c2fcc.html"
+  },
+  "盐城": {
+    "统计公报2025": "http://tjj.yancheng.gov.cn/art/2026/6/24/art_1773_4433668.html",
+    "工资公报2025": "http://tjj.yancheng.gov.cn/art/2026/7/24/art_1774_4437977.html"
+  },
+  "扬州": {
+    "统计公报2025": "http://tjj.yangzhou.gov.cn/tjgb/art/2026/art_5277f078f6ba4d9e834309d68721e41c.html",
+    "统计公报2024": "http://tjj.yangzhou.gov.cn/tjgb/art/2025/art_ec659169285646e6b0e0b958cb5baa53.html"
+  },
+  "嘉兴": {
+    "统计公报2025": "https://tjj.jiaxing.gov.cn/col/col1512321/art/2026/art_38e28ce32b7c4e6bba2b1888752f97cc.html",
+    "工资公报2025": "https://tjj.jiaxing.gov.cn/col/col1512323/art/2026/art_77ff37fef2174b0aa951073e07640ca3.html"
+  },
+  "湖州": {
+    "统计公报2024": "https://tjj.huzhou.gov.cn/art/2025/3/27/art_1229208256_58872987.html",
+    "工资公报2025": "https://tjj.huzhou.gov.cn/col/col1229208256/art/2026/art_e8b27c7de4f74d8fbece4c3eff50d325.html",
+    "工资公报2024": "https://tjj.huzhou.gov.cn/col/col1229208256/art/2025/art_3687ddf9bd274e91b872160be92f1a8a.html"
+  },
+  "金华": {
+    "工资公报2025": "http://tjj.jinhua.gov.cn/col/col1229317895/art/2026/art_de518bbf535542108ce4aa54f6be9e07.html",
+    "工资公报2024": "http://tjj.jinhua.gov.cn/art/2025/7/18/art_1229317895_4244924.html"
+  },
+  "舟山": {
+    "统计公报2025": "http://zstj.zhoushan.gov.cn/col/col1229339440/art/2026/art_13c3d4da635a4da7b861de509b95b6b0.html",
+    "工资公报2025": "http://zstj.zhoushan.gov.cn/col/col1229339440/art/2026/art_ddea20eab9d441368dc7569d9176afe9.html",
+    "工资公报2024": "http://zstj.zhoushan.gov.cn/art/2025/7/16/art_1229339440_3915725.html"
+  },
+  "苏州": {
+    "居民收入问答": "http://tjj.suzhou.gov.cn/sztjj/rdwd/202504/ecdda7145dca4c76bcc8c4a91eb2bba9.shtml"
+  }
+}

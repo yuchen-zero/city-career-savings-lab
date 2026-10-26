@@ -1,0 +1,10 @@
+﻿city,district,rent_mode,area_sqm,monthly_rent,listing_count,deposit_months,advance_rent_months,agency_fee_months,service_fee_monthly,service_fee_upfront,station_distance_km,source_name,source_url,published_at,collected_at,evidence_level,notes
+上海,临港新城,whole,,2200,,,,,,,,安居客临港新城租金页,https://m.anjuke.com/sh/rent/,2026-10-26,2026-10-26,C,页面“一室今日租金均价”，样本量、面积和成交属性不透明；只作市场观察，不作为成交均价。
+上海,临港新城,whole,,2400,1,,,,,,,安居客：滴水湖馨苑创馨派,https://m.anjuke.com/sh/rent/,2026-10-26,2026-10-26,C,1室1厅精装修示例挂牌；页面未提供稳定明细链接和可比面积，押付与服务费未核实。
+上海,临港新城,whole,,1300,1,,,,,,,安居客：绿地东岸涟城（南区公寓住宅）,https://m.anjuke.com/sh/rent/,2026-10-26,2026-10-26,C,页面显示1室2厅1300元/月的低价示例；可能为公寓或特殊房源，面积未在页面上稳定呈现，不当作典型一居。
+上海,临港,share,,1100,1,,,,,,,58同城：保利蔚蓝林语合租单间,https://sh.58.com/hezu/4088587099561999x.shtml,2025-06-03,2026-10-26,C,独立卫浴单间；历史挂牌，面积、水电和服务费未完整核实。
+上海,临港新城,share,,1500,1,,,,,,,临港合租市场观察区间上沿,https://m.anjuke.com/sh/rent/,2026-10-26,2026-10-26,C,由少量平台与搜索样本形成的观察上沿，面积和样本量不透明；不是统计中位数。
+上海,临港,whole,77,2000,1,,,,,,,房天下：宜浩佳园,https://zu.fang.com/sh/chuzu/8_1016019970_1.htm,2025-07-10,2026-10-26,C,1室2厅77㎡；历史挂牌，户型面积不典型。
+上海,临港,whole,84,2300,1,,,,,,,贝壳：绿地东岸涟城,https://m.ke.com/chuzu/sh/zufang/SH1661736411599994880.html,2025-09-01,2026-10-26,C,2室1厅84㎡；适合合租或情侣，不是单人一居。
+上海,临港主城区,other,31.27,1000,1,,,0,,,6.5,临港人才公寓：宸寓·星苑,https://www.lingang.gov.cn/html/website/lg/rc/hotspot/redianxinwen/p1781237685213462530.html,2024-04-12,2026-10-26,A,官方人才公寓一居室低端租金；rent_mode=other用于标识条件性人才住房，需符合资格，距滴水湖站约6.5公里。
+上海,临港主城区,other,53.25,1800,1,,,0,,,6.5,临港人才公寓：宸寓·星苑,https://www.lingang.gov.cn/html/website/lg/rc/hotspot/redianxinwen/p1781237685213462530.html,2024-04-12,2026-10-26,A,官方人才公寓一居室高端租金；rent_mode=other用于标识条件性人才住房，资格与空房需另核。

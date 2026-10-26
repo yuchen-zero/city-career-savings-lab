@@ -1,0 +1,6 @@
+﻿city,district,job_family,job_count,company_count,max_employer_share,salary_n,salary_coverage_pct,salary_p25_monthly,salary_median_monthly,salary_p75_monthly,median_annual_months,double_weekend_n,double_weekend_share,trip_none_n,trip_none_share,trip_occasional_n,trip_frequent_or_required_n,trip_unknown_n,accommodation_provided_n,negotiable_salary_n,salary_missing_n
+上海,浦东新区,封装设备,1,1,1.0,0,0.0,,,,,0,0.0,0,0.0,0,0,1,0,1,0
+上海,浦东新区,工程设备,1,1,1.0,0,0.0,,,,,0,0.0,0,0.0,0,0,1,0,1,0
+上海,浦东新区,生产运筹,1,1,1.0,0,0.0,,,,,0,0.0,0,0.0,0,0,1,0,1,0
+上海,浦东新区,自动化算法,1,1,1.0,0,0.0,,,,,0,0.0,0,0.0,0,0,1,0,1,0
+上海,浦东新区,设备工程,2,2,0.5,0,0.0,,,,,0,0.0,0,0.0,0,0,2,0,2,0

@@ -1,0 +1,4 @@
+### QUERY: 上海 电气工程及其自动化 应届生 起薪 薪资 2026
+### SOURCE: alt
+### LEN: 50
+curl: (6) Could not resolve host: search.marcia.cc

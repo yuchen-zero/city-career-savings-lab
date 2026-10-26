@@ -1,0 +1,34 @@
+# Python and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.python_deps/
+
+# Node and build dependencies
+node_modules/
+
+# Local rendering, QA, and document inspection artifacts
+*.inspect.ndjson
+_docx_render*/
+_xlsx_render*/
+_html_qa/
+
+# Raw browser captures may contain session-scoped tokens or copyrighted pages
+sources/raw/
+**/raw_pages/
+
+# Secrets and local credentials
+.env
+.env.*
+cookies*
+*credential*
+*secret*
+*.key
+*.pem
+*.pfx
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,0 +1,250 @@
+{
+  "上海": {
+    "base": "https://tjj.sh.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "2024年我市居民收入和消费支出情况",
+        "url": "https://tjj.sh.gov.cn/tjfx/20250121/304b193138e946df873311fb607c587b.html"
+      },
+      {
+        "text": "2025年上海市国民经济和社会发展统计公报",
+        "url": "https://tjj.sh.gov.cn/tjgb/20260330/e0772941e8e041eaaad2df850b44ef98.html"
+      }
+    ]
+  },
+  "南京": {
+    "base": "http://tjj.nanjing.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "无锡": {
+    "base": "http://tj.wuxi.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "徐州": {
+    "base": "http://tj.xz.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "2025年徐州市国民经济和社会发展统计公报",
+        "url": "http://tj.xz.gov.cn/govxxgk/01405176-5/2026-06-17/f2a59a95-a040-450c-9115-2e2cdb43040e.html"
+      },
+      {
+        "text": "2024年徐州市国民经济和社会发展统计公报",
+        "url": "http://tj.xz.gov.cn/govxxgk/01405176-5/2025-04-08/a5bc7994-28b0-4d15-8a70-48e8841c2fcc.html"
+      }
+    ]
+  },
+  "常州": {
+    "base": "http://tjj.changzhou.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "统计公报",
+        "url": "https://tjj.changzhou.gov.cn/class/OEJQMFCO"
+      }
+    ]
+  },
+  "苏州": {
+    "base": "http://tjj.suzhou.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "2024年苏州市居民人均可支配收入是多少？",
+        "url": "http://tjj.suzhou.gov.cn/sztjj/rdwd/202504/ecdda7145dca4c76bcc8c4a91eb2bba9.shtml"
+      }
+    ]
+  },
+  "南通": {
+    "base": "http://tjj.nantong.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "连云港": {
+    "base": "http://tjj.lyg.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "淮安": {
+    "base": "http://tjj.huaian.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "盐城": {
+    "base": "http://tjj.yancheng.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "2025年盐城市国民经济和社会发展统计公报",
+        "url": "http://tjj.yancheng.gov.cn/art/2026/6/24/art_1773_4433668.html"
+      }
+    ]
+  },
+  "扬州": {
+    "base": "http://tjj.yangzhou.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "2025年扬州市国民经济和社会发展统计公报",
+        "url": "http://tjj.yangzhou.gov.cn/tjgb/art/2026/art_5277f078f6ba4d9e834309d68721e41c.html"
+      },
+      {
+        "text": "2024年扬州市国民经济和社会发展统计公报",
+        "url": "http://tjj.yangzhou.gov.cn/tjgb/art/2025/art_ec659169285646e6b0e0b958cb5baa53.html"
+      },
+      {
+        "text": "2023年扬州市国民经济和社会发展统计公报",
+        "url": "https://www.yangzhou.gov.cn/zfxxgk/fdgkzdnr/tjxx/tjgb/art/2024/art_6df6049e668a46c7a33ef2409614d574.html"
+      },
+      {
+        "text": "2022年扬州市江都区国民经济和社会发展统计公报",
+        "url": "https://www.yangzhou.gov.cn/zfxxgk/fdgkzdnr/tjxx/tjgb/art/2024/art_638f9a7f0ac14b1da0bbc5e1c9840eb0.html"
+      },
+      {
+        "text": "2022年扬州市国民经济和社会发展统计公报",
+        "url": "https://www.yangzhou.gov.cn/zfxxgk/fdgkzdnr/tjxx/tjgb/art/2023/art_7345d822a90a457aaa4c63db59b79695.html"
+      },
+      {
+        "text": "2021年扬州市广陵区国民经济和社会发展统计公报",
+        "url": "https://www.yangzhou.gov.cn/zfxxgk/fdgkzdnr/tjxx/tjgb/art/2022/art_5f73ca92746949e2a4919991eb767f10.html"
+      }
+    ]
+  },
+  "镇江": {
+    "base": "http://tjj.zhenjiang.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "泰州": {
+    "base": "http://tjj.taizhou.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "宿迁": {
+    "base": "http://tjj.suqian.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "杭州": {
+    "base": "http://tjj.hangzhou.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "宁波": {
+    "base": "http://tjj.ningbo.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "居民收入",
+        "url": "http://tjj.ningbo.gov.cn/col/col1229042840/index.html"
+      }
+    ]
+  },
+  "温州": {
+    "base": "http://wztjj.wenzhou.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "嘉兴": {
+    "base": "http://tjj.jiaxing.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "2025年嘉兴市国民经济和社会发展统计公报",
+        "url": "https://tjj.jiaxing.gov.cn/col/col1512321/art/2026/art_38e28ce32b7c4e6bba2b1888752f97cc.html"
+      },
+      {
+        "text": "​2025年嘉兴市国民经济和社会发展统计公报",
+        "url": "https://tjj.jiaxing.gov.cn/col/col1512321/art/2026/art_5c44454792304bca88fa6e4d73df3755.html"
+      },
+      {
+        "text": "2024年嘉兴市单位就业人员年平均工资统计公报",
+        "url": "https://tjj.jiaxing.gov.cn/art/2025/7/17/art_1512323_59153643.html"
+      }
+    ]
+  },
+  "湖州": {
+    "base": "http://tjj.huzhou.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "统计公报",
+        "url": "https://tjj.huzhou.gov.cn/col/col1229208256/index.html"
+      },
+      {
+        "text": "2025年湖州市单位就业人员年平均工资统计公报",
+        "url": "https://tjj.huzhou.gov.cn/col/col1229208256/art/2026/art_e8b27c7de4f74d8fbece4c3eff50d325.html"
+      },
+      {
+        "text": "2024年湖州市单位就业人员年平均工资统计公报",
+        "url": "https://tjj.huzhou.gov.cn/col/col1229208256/art/2025/art_3687ddf9bd274e91b872160be92f1a8a.html"
+      },
+      {
+        "text": "2024年湖州市国民经济和社会发展统计公报",
+        "url": "https://tjj.huzhou.gov.cn/art/2025/3/27/art_1229208256_58872987.html"
+      },
+      {
+        "text": "2023年湖州市单位就业人员年平均工资统计公报",
+        "url": "https://tjj.huzhou.gov.cn/art/2024/8/5/art_1229208256_58872388.html"
+      },
+      {
+        "text": "2023年湖州市国民经济和社会发展统计公报",
+        "url": "https://tjj.huzhou.gov.cn/art/2024/3/19/art_1229208256_58871905.html"
+      },
+      {
+        "text": "2022年湖州市单位就业人员年平均工资统计公报",
+        "url": "https://tjj.huzhou.gov.cn/art/2023/6/12/art_1229208256_58871126.html"
+      }
+    ]
+  },
+  "绍兴": {
+    "base": "http://tjj.sx.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "金华": {
+    "base": "http://tjj.jinhua.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "衢州": {
+    "base": "http://tjj.qz.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "舟山": {
+    "base": "http://zstj.zhoushan.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "2025年舟山市单位就业人员年平均工资统计公报",
+        "url": "http://zstj.zhoushan.gov.cn/col/col1229339440/art/2026/art_ddea20eab9d441368dc7569d9176afe9.html"
+      },
+      {
+        "text": "2025年舟山市国民经济和社会发展统计公报",
+        "url": "http://zstj.zhoushan.gov.cn/col/col1229339440/art/2026/art_13c3d4da635a4da7b861de509b95b6b0.html"
+      },
+      {
+        "text": "2024年舟山市单位就业人员年平均工资统计公报",
+        "url": "http://zstj.zhoushan.gov.cn/art/2025/7/16/art_1229339440_3915725.html"
+      }
+    ]
+  },
+  "台州": {
+    "base": "http://tjj.zjtz.gov.cn/",
+    "home_status": "ok",
+    "candidates": []
+  },
+  "丽水": {
+    "base": "http://tjj.lishui.gov.cn/",
+    "home_status": "ok",
+    "candidates": [
+      {
+        "text": "统计公报",
+        "url": "http://tjj.lishui.gov.cn/col/col1229892124/index.html"
+      }
+    ]
+  }
+}
