@@ -1,12 +1,12 @@
-# 应届生城市调研技能与江浙沪电气岗位数据
+# city-career-savings-lab
 
-这是一个私有研究快照，包含可复用的 `graduate-city-research` Codex Skill，以及 2027 届电气工程及其自动化本科应届生的江浙沪城市调研和上海临港深化研究产物。
+这是一个公开研究快照，包含可复用的 `city-career-savings-lab` Codex Skill，以及 2027 届电气工程及其自动化本科应届生的江浙沪城市调研和上海临港深化研究产物。技能从岗位、生活成本和税费出发，回答“去哪个城市工作、一个月能攒下多少钱”。
 
 ## 仓库内容
 
 ```text
-skill/graduate-city-research/
-  可复用的城市调研与单岗位核验 Skill
+skill/city-career-savings-lab/
+  可复用的城市职业、每月净结余与单岗位核验 Skill
 
 research/jiangzhehu-2027/
   江浙沪 25 城市比较数据、正式报告、问卷与采集/构建脚本
@@ -50,13 +50,19 @@ research/lingang-2027/
 - `*.inspect.ndjson`、PDF/PNG 渲染中间件和临时 QA 文件；
 - 从 GitHub 克隆的第三方采集器源码。研究只保留本项目自己的脚本、归一化数据和来源信息。
 
-第三方网站内容、招聘广告和图片仍受各自权利与平台条款约束。本仓库是私有研究归档，不代表对第三方内容再许可。
+第三方网站内容、招聘广告和图片仍受各自权利与平台条款约束。本仓库是研究归档，不代表对第三方内容再许可。
 
 ## Skill 用法
 
-在支持 Skills 的 Codex 环境中，将 `skill/graduate-city-research` 放回个人的 skills 目录，或直接阅读其中的 `SKILL.md`。技能支持两种模式：
+在支持 Skills 的 Codex 环境中，将 `skill/city-career-savings-lab` 放回个人的 skills 目录，或直接阅读其中的 `SKILL.md`。技能支持两种模式：
 
 1. 城市/区县批量的岗位、工资、房租、生活成本和净结余调研；
 2. 按企业、岗位名、岗位链接或岗位编号核验一个具体岗位。
 
-单岗位模式的详细流程见 `skill/graduate-city-research/references/job-lookup.md`。
+单岗位模式的详细流程见 `skill/city-career-savings-lab/references/job-lookup.md`。
+
+技能还提供一个自包含 HTML 决策页模板和生成命令，断网也能打开与切换敏感参数：
+
+```text
+python scripts/research_workbench.py dashboard --project <项目目录> --title "<报告标题>" --output <项目目录>/output/<报告标题>.html
+```

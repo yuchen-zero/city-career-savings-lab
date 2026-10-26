@@ -1,15 +1,15 @@
 ---
-name: graduate-city-research
-description: 面向中国城市/区县（其他地区可替换税费规则）调研应届生岗位薪资、工作条件、租房与生活成本，并计算税后净结余；支持跨城市选域和单个目标岗位的可追溯核验，可输出 Word、Excel 与交互式可视化。
+name: city-career-savings-lab
+description: 面向中国城市/区县（其他地区可替换税费规则）调研应届生岗位薪资、工作条件、租房与生活成本，测算一个月可积累的净结余；支持跨城市择业和单个目标岗位的可追溯核验，可输出 Word、Excel 与离线交互式 HTML 决策页。
 metadata:
-  short-description: 可复用的应届生城市、薪资、成本与净结余调研流程
+  short-description: 可复用的城市职业、生活成本与每月结余研究流程
 ---
 
-# 应届生城市调研
+# 城市职业结余实验室
 
 ## 目标
 
-把“某专业应届生去哪个城市/区县工作更合适”转化为可复核的数据问题。最终结论至少同时考虑：目标岗位供给、税前招聘薪资与税后现金、双休和出差等硬条件、整租/合租、水电气网、餐饮、通勤、押付和渠道费、首月现金压力，以及证据质量。不能把招聘广告中的最高薪资直接当作可支配收入。
+把“某专业应届生去哪个城市/区县工作、一个月能攒下多少钱”转化为可复核的数据问题。最终结论至少同时考虑：目标岗位供给、税前招聘薪资与税后现金、双休和出差等硬条件、整租/合租、水电气网、餐饮、通勤、押付和渠道费、首月现金压力、每月可积累金额，以及证据质量。不能把招聘广告中的最高薪资直接当作可支配收入。
 
 当用户已经锁定某家公司、某个岗位、岗位链接或岗位编号时，切换到“具体岗位查询与核验”模式；不必先跑城市全量采集，也不能把岗位搜索结果数当作供给样本。
 
@@ -100,6 +100,14 @@ python scripts/research_workbench.py calculate --project <项目目录>
 
 除非用户另有要求，交付 Word 报告、Excel 总表和自包含交互式 HTML。结构、图表和验收项见 [references/deliverables-and-audit.md](references/deliverables-and-audit.md)。
 
+HTML 决策页优先由技能内的离线模板生成。模板和生成器使用同一份 `city_model.csv` 与净结余计算口径：
+
+```text
+python scripts/research_workbench.py dashboard --project <项目目录> --title "<报告标题>" --output <项目目录>/output/<报告标题>.html
+```
+
+可执行 `dashboard --help` 查看 `--input`、`--template` 和 `--lease-months` 参数。生成的页面必须内嵌数据、CSS 和 JavaScript，不依赖 CDN、外部字体或网络请求。
+
 交付前必须完成：
 
 - 所有关键结论能回到数据表和来源台账；
@@ -115,4 +123,5 @@ python scripts/research_workbench.py calculate --project <项目目录>
 - 查询某家公司某个具体岗位、核验岗位状态与工作条件：读 [references/job-lookup.md](references/job-lookup.md)。
 - 设计招聘、官方统计、房租和生活成本查询：读 [references/source-playbook.md](references/source-playbook.md)。
 - 生成报告、总表、交互页或做最终质检：读 [references/deliverables-and-audit.md](references/deliverables-and-audit.md)。
+- 离线 HTML 决策页模板：`assets/city-savings-dashboard.template.html`，由 `dashboard` 命令填充项目数据。
 - 需要一次可运行示例：`scripts/research_workbench.py init --demo ...`，示例只用于验证脚本，不是实证数据。

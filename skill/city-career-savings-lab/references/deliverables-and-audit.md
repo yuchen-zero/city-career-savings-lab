@@ -40,6 +40,14 @@
 
 ## 自包含 HTML
 
+优先使用模板 `assets/city-savings-dashboard.template.html`，通过以下命令生成：
+
+```text
+python scripts/research_workbench.py dashboard --project <项目目录> --title "<报告标题>" --output <项目目录>/output/<报告标题>.html
+```
+
+该命令从 `data/city_model.csv` 逐行调用与 Excel、Word 相同的净结余计算函数，并把情景数据和参数化交互逻辑内嵌进单个 HTML 文件。模板中的调整项用于敏感性分析，不得改写原始数据或把假设包装成实测值。
+
 交互页至少允许切换：
 
 - 合租/整租和整租面积；

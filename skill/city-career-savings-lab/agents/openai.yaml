@@ -1,0 +1,6 @@
+interface:
+  display_name: "城市职业结余实验室"
+  short_description: "测算城市薪资、生活成本、每月结余，也可核验具体岗位"
+  default_prompt: "使用 $city-career-savings-lab 调研目标地区就业城市和每月可积累净结余，或按企业、岗位名和地点核验一个具体岗位，并给出可追溯证据。"
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,0 @@
-interface:
-  display_name: "应届生城市调研"
-  short_description: "调研应届生城市成本，也可核验单个目标岗位"
-  default_prompt: "使用 $graduate-city-research 调研目标地区应届生就业城市，或按企业、岗位名和地点核验一个具体岗位，并给出可追溯证据。"
-policy:
-  allow_implicit_invocation: true

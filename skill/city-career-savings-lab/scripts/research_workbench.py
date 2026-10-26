@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproducible workbench for graduate city research.
+"""Reproducible workbench for city career and savings research.
 
 Dependencies: Python 3.10+ standard library only.
 """
@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import html
 import json
 import math
 import re
@@ -800,6 +801,79 @@ def calculate_project(project: Path, input_path: Path | None = None,
     return 0
 
 
+def render_dashboard(project: Path, input_path: Path | None = None,
+                     template_path: Path | None = None,
+                     output_path: Path | None = None,
+                     title: str | None = None,
+                     lease_months: int | None = None) -> int:
+    """Render a self-contained offline decision dashboard from city_model.csv."""
+    config_path = project / "config.json"
+    config: dict[str, Any] = {}
+    if config_path.exists():
+        config = json.loads(config_path.read_text(encoding="utf-8"))
+
+    model_path = input_path or (project / "data" / "city_model.csv")
+    if not model_path.exists():
+        raise SystemExit(f"model file not found: {model_path}")
+    skill_root = Path(__file__).resolve().parent.parent
+    template = template_path or (skill_root / "assets" / "city-savings-dashboard.template.html")
+    if not template.exists():
+        raise SystemExit(f"dashboard template not found: {template}")
+
+    effective_lease = lease_months or int(config.get("default_lease_months", 12) or 12)
+    cutoff = str(config.get("data_cutoff", ""))
+    rows = csv_read(model_path)
+    results: list[dict[str, Any]] = []
+    for row_number, row in enumerate(rows, start=2):
+        try:
+            results.append(calculate_row(row, effective_lease, cutoff))
+        except ValueError as exc:
+            raise SystemExit(f"row {row_number}: {exc}") from exc
+
+    report_title = title or (
+        f"{config.get('region', '目标地区')} {config.get('major', '目标专业')} "
+        f"{config.get('graduate_year', '')} 届城市职业结余"
+    )
+    subtitle = (
+        f"{config.get('region', '')}｜{config.get('major', '')}｜"
+        f"{config.get('graduate_year', '')} 届｜数据截止 {cutoff or '未填写'}"
+    )
+    payload = {
+        "title": report_title,
+        "subtitle": subtitle,
+        "generated_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "data_cutoff": cutoff,
+        "lease_months": effective_lease,
+        "region": config.get("region", ""),
+        "major": config.get("major", ""),
+        "graduate_year": config.get("graduate_year", ""),
+        "rows": results,
+        "notes": [
+            "招聘薪资是广告值，不等同于员工实际到手工资。",
+            "合租、整租及来源差异由 scenario 字段保留；未知条件不按满足处理。",
+            "页面中的调整项只用于敏感性分析，不覆盖原始数据。",
+        ],
+    }
+    payload_json = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
+    document = template.read_text(encoding="utf-8")
+    replacements = {
+        "__DASHBOARD_TITLE__": html.escape(report_title),
+        "__DASHBOARD_SUBTITLE__": html.escape(subtitle),
+        "__DASHBOARD_GENERATED_AT__": html.escape(payload["generated_at"]),
+        "__DASHBOARD_DATA_JSON__": payload_json,
+    }
+    for marker, value in replacements.items():
+        if marker not in document:
+            raise SystemExit(f"template marker missing: {marker}")
+        document = document.replace(marker, value)
+
+    output = output_path or (project / "output" / "city-career-savings-dashboard.html")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(document, encoding="utf-8")
+    print(f"wrote: {output} rows={len(results)} lease_months={effective_lease}")
+    return 0
+
+
 def percentile(values: list[float], probability: float) -> float | None:
     if not values:
         return None
@@ -926,7 +1000,7 @@ def summarize_jobs(project: Path, input_path: Path | None = None,
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Create, validate, summarize, and calculate graduate city research data.",
+        description="Create, validate, summarize, calculate, and visualize city career savings research data.",
     )
     subparsers = parser.add_subparsers(dest="command", required=True)
 
@@ -953,6 +1027,14 @@ def build_parser() -> argparse.ArgumentParser:
     calc_parser.add_argument("--input", help="default: <project>/data/city_model.csv")
     calc_parser.add_argument("--output", help="default: <project>/output/city_net_savings.csv")
     calc_parser.add_argument("--lease-months", type=int, help="agency-fee amortization period")
+
+    dashboard_parser = subparsers.add_parser("dashboard", help="render a self-contained offline HTML decision dashboard")
+    dashboard_parser.add_argument("--project", required=True)
+    dashboard_parser.add_argument("--input", help="default: <project>/data/city_model.csv")
+    dashboard_parser.add_argument("--template", help="default: skill assets/city-savings-dashboard.template.html")
+    dashboard_parser.add_argument("--output", help="default: <project>/output/city-career-savings-dashboard.html")
+    dashboard_parser.add_argument("--title", help="dashboard title; defaults to config region, major, and year")
+    dashboard_parser.add_argument("--lease-months", type=int, help="agency-fee amortization period")
     return parser
 
 
@@ -974,6 +1056,12 @@ def main(argv: list[str] | None = None) -> int:
         input_path = Path(args.input).expanduser().resolve() if args.input else None
         output_path = Path(args.output).expanduser().resolve() if args.output else None
         return calculate_project(project, input_path, output_path, args.lease_months)
+    if args.command == "dashboard":
+        input_path = Path(args.input).expanduser().resolve() if args.input else None
+        template_path = Path(args.template).expanduser().resolve() if args.template else None
+        output_path = Path(args.output).expanduser().resolve() if args.output else None
+        return render_dashboard(project, input_path, template_path, output_path,
+                                args.title, args.lease_months)
     parser.error("unknown command")
     return 2
 

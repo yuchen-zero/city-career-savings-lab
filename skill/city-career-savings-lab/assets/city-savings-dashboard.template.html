@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>__DASHBOARD_TITLE__</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #637083;
+      --line: #dce3ea;
+      --paper: #ffffff;
+      --canvas: #f3f6f8;
+      --navy: #173c5f;
+      --teal: #0c7b74;
+      --teal-soft: #e6f4f1;
+      --amber: #a76516;
+      --amber-soft: #fff4df;
+      --red: #b63c43;
+      --red-soft: #fcebed;
+      --blue-soft: #eaf2f9;
+      --shadow: 0 14px 36px rgba(23, 32, 51, 0.08);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top right, rgba(12, 123, 116, 0.11), transparent 30rem),
+        linear-gradient(180deg, #edf3f5 0, var(--canvas) 20rem, var(--canvas) 100%);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+      line-height: 1.55;
+    }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .shell { width: min(1440px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 48px; }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: flex-start;
+      padding: 34px 38px;
+      color: #fff;
+      border-radius: 26px;
+      background: linear-gradient(130deg, #15354f 0%, #174967 52%, #0c6b68 100%);
+      box-shadow: var(--shadow);
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #aee5de;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .18em;
+    }
+    h1 { margin: 0; font-size: clamp(28px, 4vw, 46px); line-height: 1.16; letter-spacing: -.03em; }
+    .subtitle { max-width: 850px; margin: 14px 0 0; color: #d7e5ec; font-size: 15px; }
+    .offline {
+      flex: 0 0 auto;
+      min-width: 205px;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 14px;
+      background: rgba(255,255,255,.08);
+      font-size: 13px;
+    }
+    .offline strong { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+    .offline i { width: 9px; height: 9px; border-radius: 50%; background: #77e0c8; box-shadow: 0 0 0 4px rgba(119,224,200,.14); }
+    .offline span { display: block; margin-top: 7px; color: #c8dce4; }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin: 18px 0;
+    }
+    .metric {
+      min-height: 132px;
+      padding: 20px;
+      border: 1px solid rgba(220,227,234,.9);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.93);
+      box-shadow: 0 7px 22px rgba(23,32,51,.045);
+    }
+    .metric-label { color: var(--muted); font-size: 13px; font-weight: 700; }
+    .metric-value { margin-top: 13px; font-size: 28px; font-weight: 800; letter-spacing: -.035em; }
+    .metric-meta { margin-top: 5px; color: var(--muted); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .positive { color: var(--teal); }
+    .negative { color: var(--red); }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: 0 8px 24px rgba(23,32,51,.04);
+    }
+    .panel + .panel { margin-top: 18px; }
+    .panel-head { display: flex; justify-content: space-between; gap: 18px; align-items: flex-end; padding: 22px 24px 16px; }
+    .panel-head h2 { margin: 0; font-size: 20px; letter-spacing: -.02em; }
+    .panel-head p { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(150px, 1fr));
+      gap: 14px;
+      padding: 0 24px 22px;
+    }
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label { color: #465468; font-size: 12px; font-weight: 800; }
+    .field input, .field select {
+      width: 100%;
+      height: 42px;
+      padding: 0 11px;
+      color: var(--ink);
+      border: 1px solid #cfd9e2;
+      border-radius: 10px;
+      background: #fbfcfd;
+      outline: none;
+    }
+    .field input:focus, .field select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(12,123,116,.12); }
+    .reset {
+      align-self: end;
+      height: 42px;
+      border: 1px solid #cfd9e2;
+      border-radius: 10px;
+      color: var(--navy);
+      background: var(--blue-soft);
+      font-weight: 800;
+    }
+    .reset:hover { border-color: var(--navy); }
+    .assumption { margin: 0 24px 22px; padding: 12px 14px; border-radius: 10px; color: #6c541d; background: var(--amber-soft); font-size: 12px; }
+
+    .split { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(330px, .85fr); gap: 18px; margin-top: 18px; }
+    .chart { display: grid; gap: 11px; padding: 0 24px 24px; }
+    .bar-row { display: grid; grid-template-columns: minmax(145px, 220px) minmax(220px, 1fr) 106px; gap: 14px; align-items: center; }
+    .bar-label { min-width: 0; }
+    .bar-label strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+    .bar-label span { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--muted); font-size: 11px; }
+    .bar-track { height: 13px; overflow: hidden; border-radius: 999px; background: #edf1f4; }
+    .bar-fill { height: 100%; min-width: 4px; border-radius: inherit; transition: width .2s ease; }
+    .bar-fill.good { background: linear-gradient(90deg, #64b9ad, var(--teal)); }
+    .bar-fill.bad { background: linear-gradient(90deg, #eb9297, var(--red)); }
+    .bar-amount { text-align: right; font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+    .notes { padding: 4px 24px 24px; }
+    .note-list { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; }
+    .note-list li { padding: 11px 13px; border-left: 3px solid var(--teal); border-radius: 0 9px 9px 0; color: #4d5c6f; background: #f6f9fa; font-size: 12px; }
+    .cutoff { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
+    .cutoff div { padding: 12px; border: 1px solid var(--line); border-radius: 10px; }
+    .cutoff span { display: block; color: var(--muted); font-size: 11px; }
+    .cutoff strong { display: block; margin-top: 3px; font-size: 14px; }
+
+    .table-wrap { overflow-x: auto; padding: 0 24px 24px; }
+    table { width: 100%; min-width: 1080px; border-collapse: collapse; font-size: 12px; }
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      padding: 11px 10px;
+      color: #506075;
+      border-bottom: 1px solid var(--line);
+      background: #f7f9fb;
+      text-align: left;
+      white-space: nowrap;
+    }
+    tbody td { padding: 12px 10px; border-bottom: 1px solid #edf1f4; vertical-align: top; }
+    tbody tr:hover { background: #fafcfd; }
+    .money { font-variant-numeric: tabular-nums; white-space: nowrap; font-weight: 800; }
+    .sub { display: block; margin-top: 2px; color: var(--muted); font-size: 11px; }
+    .tag { display: inline-block; min-width: 25px; padding: 2px 7px; border-radius: 999px; background: var(--blue-soft); color: var(--navy); text-align: center; font-weight: 800; }
+    .flags { max-width: 220px; color: #6b5a34; font-size: 10px; line-height: 1.45; overflow-wrap: anywhere; }
+    .source { max-width: 180px; color: var(--muted); font-size: 10px; overflow-wrap: anywhere; }
+    .empty { padding: 42px 20px; color: var(--muted); text-align: center; }
+
+    footer { margin-top: 18px; padding: 18px 4px 0; color: #7c8795; text-align: center; font-size: 11px; }
+    [hidden] { display: none !important; }
+
+    @media (max-width: 1050px) {
+      .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .controls { grid-template-columns: repeat(3, minmax(150px, 1fr)); }
+      .split { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 680px) {
+      .shell { width: min(100% - 18px, 1440px); padding-top: 9px; }
+      .hero { flex-direction: column; padding: 24px 20px; border-radius: 18px; }
+      .offline { min-width: 0; width: 100%; }
+      .metrics { grid-template-columns: 1fr; }
+      .controls { grid-template-columns: 1fr 1fr; padding-inline: 16px; }
+      .panel-head, .chart, .notes, .table-wrap { padding-inline: 16px; }
+      .assumption { margin-inline: 16px; }
+      .bar-row { grid-template-columns: minmax(105px, 1fr) minmax(130px, 1.2fr) 92px; gap: 8px; }
+    }
+    @media print {
+      body { background: #fff; }
+      .shell { width: 100%; padding: 0; }
+      .hero, .panel, .metric { box-shadow: none; }
+      .controls, .reset { display: none; }
+      .table-wrap { overflow: visible; }
+      table { min-width: 0; font-size: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">CITY CAREER SAVINGS · OFFLINE DECISION DASHBOARD</p>
+        <h1>__DASHBOARD_TITLE__</h1>
+        <p class="subtitle">__DASHBOARD_SUBTITLE__</p>
+      </div>
+      <div class="offline">
+        <strong><i></i>离线数据与交互可用</strong>
+        <span>生成时间：__DASHBOARD_GENERATED_AT__</span>
+      </div>
+    </header>
+
+    <section class="metrics" aria-label="关键指标">
+      <article class="metric">
+        <div class="metric-label">当前有效情景</div>
+        <div class="metric-value" id="metric-rows">—</div>
+        <div class="metric-meta" id="metric-rows-note">按当前筛选条件</div>
+      </article>
+      <article class="metric">
+        <div class="metric-label">最高月结余</div>
+        <div class="metric-value" id="metric-best">—</div>
+        <div class="metric-meta" id="metric-best-note">等待数据</div>
+      </article>
+      <article class="metric">
+        <div class="metric-label">最低首月现金</div>
+        <div class="metric-value" id="metric-upfront">—</div>
+        <div class="metric-meta" id="metric-upfront-note">含押付与一次性支出</div>
+      </article>
+      <article class="metric">
+        <div class="metric-label">平均房租负担率</div>
+        <div class="metric-value" id="metric-burden">—</div>
+        <div class="metric-meta">基准房租 ÷ 税前月薪</div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>情景与敏感性参数</h2>
+          <p>调整值相对数据表基准；正值收入会增加结余，正值成本会减少结余。</p>
+        </div>
+      </div>
+      <div class="controls">
+        <div class="field">
+          <label for="scenario-filter">租房/生活情景</label>
+          <select id="scenario-filter"></select>
+        </div>
+        <div class="field">
+          <label for="job-filter">岗位族</label>
+          <select id="job-filter"></select>
+        </div>
+        <div class="field">
+          <label for="basis-filter">结余口径</label>
+          <select id="basis-filter">
+            <option value="cash">纯现金结余</option>
+            <option value="fund">现金 + 个人公积金</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sort-filter">排序方式</label>
+          <select id="sort-filter">
+            <option value="savings">月结余从高到低</option>
+            <option value="upfront">首月现金从低到高</option>
+            <option value="burden">房租负担率从低到高</option>
+            <option value="evidence">证据等级从高到低</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="income-delta">月现金收入调整（元）</label>
+          <input id="income-delta" type="number" step="100" value="0">
+        </div>
+        <div class="field">
+          <label for="rent-delta">月房租调整（元）</label>
+          <input id="rent-delta" type="number" step="100" value="0">
+        </div>
+        <div class="field">
+          <label for="food-delta">月餐饮调整（元）</label>
+          <input id="food-delta" type="number" step="50" value="0">
+        </div>
+        <div class="field">
+          <label for="commute-delta">月通勤调整（元）</label>
+          <input id="commute-delta" type="number" step="25" value="0">
+        </div>
+        <div class="field">
+          <label for="utility-delta">水电燃气网调整（元）</label>
+          <input id="utility-delta" type="number" step="25" value="0">
+        </div>
+        <div class="field">
+          <label for="other-delta">其他固定支出调整（元）</label>
+          <input id="other-delta" type="number" step="50" value="0">
+        </div>
+        <div class="field">
+          <label for="evidence-filter">最低证据等级</label>
+          <select id="evidence-filter">
+            <option value="all">不限</option>
+            <option value="A">A 级</option>
+            <option value="B">B 级</option>
+            <option value="C">C 级</option>
+            <option value="D">D 级</option>
+          </select>
+        </div>
+        <button class="reset" id="reset-button" type="button">恢复基准参数</button>
+      </div>
+      <p class="assumption">这里只做可逆的敏感性分析。网页不会修改 CSV、Word 或 Excel；任何“节省/增加”结果都不是招聘方承诺或实际账单。</p>
+    </section>
+
+    <div class="split">
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>月结余排名</h2>
+            <p id="chart-caption">展示当前条件下结余最高的情景。</p>
+          </div>
+        </div>
+        <div class="chart" id="ranking-chart"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2>数据边界</h2>
+            <p>必须与数字一起阅读。</p>
+          </div>
+        </div>
+        <div class="notes">
+          <ul class="note-list" id="note-list"></ul>
+          <div class="cutoff">
+            <div><span>数据截止日</span><strong id="cutoff">—</strong></div>
+            <div><span>中介费摊销月数</span><strong id="lease-months">—</strong></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="panel" style="margin-top:18px">
+      <div class="panel-head">
+        <div>
+          <h2>情景明细</h2>
+          <p>结余、首月现金、证据与质量标记同时展示；未知条件不能按满足处理。</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>城市 / 区县</th>
+              <th>岗位族 / 情景</th>
+              <th>基准税前月薪</th>
+              <th>调整后月结余</th>
+              <th>首月现金</th>
+              <th>房租负担率</th>
+              <th>样本与证据</th>
+              <th>质量标记 / 来源键</th>
+            </tr>
+          </thead>
+          <tbody id="detail-body"></tbody>
+        </table>
+        <div class="empty" id="empty-state" hidden>当前筛选条件下没有数据。</div>
+      </div>
+    </section>
+
+    <footer>本页面由 city-career-savings-lab 技能生成。离线打开可用；关键结论须回到原始数据表和证据台账复核。</footer>
+  </div>
+
+  <script id="dashboard-data" type="application/json">__DASHBOARD_DATA_JSON__</script>
+  <script>
+    (() => {
+      const data = JSON.parse(document.getElementById("dashboard-data").textContent);
+      const rows = Array.isArray(data.rows) ? data.rows : [];
+      const $ = (id) => document.getElementById(id);
+      const controls = {
+        scenario: $("scenario-filter"),
+        job: $("job-filter"),
+        basis: $("basis-filter"),
+        sort: $("sort-filter"),
+        evidence: $("evidence-filter"),
+        income: $("income-delta"),
+        rent: $("rent-delta"),
+        food: $("food-delta"),
+        commute: $("commute-delta"),
+        utility: $("utility-delta"),
+        other: $("other-delta")
+      };
+      const evidenceRank = { A: 0, B: 1, C: 2, D: 3, UNKNOWN: 4 };
+      const numberFormat = new Intl.NumberFormat("zh-CN", { maximumFractionDigits: 0 });
+      const money = (value) => Number.isFinite(Number(value)) ? `¥${numberFormat.format(Number(value))}` : "—";
+      const pct = (value) => Number.isFinite(Number(value)) ? `${(Number(value) * 100).toFixed(1)}%` : "—";
+      const numeric = (id) => Number(controls[id].value) || 0;
+      const escapeHtml = (value) => String(value ?? "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+      }[char]));
+      const unique = (key) => [...new Set(rows.map((row) => String(row[key] ?? "").trim()).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, "zh-CN"));
+
+      function addOptions(select, values, allLabel) {
+        select.innerHTML = [`<option value="all">${escapeHtml(allLabel)}</option>`]
+          .concat(values.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value)}</option>`))
+          .join("");
+      }
+
+      addOptions(controls.scenario, unique("scenario"), "全部租房/生活情景");
+      addOptions(controls.job, unique("job_family"), "全部岗位族");
+
+      function adjustedRows() {
+        const incomeDelta = numeric("income");
+        const costDelta = numeric("rent") + numeric("food") + numeric("commute") + numeric("utility") + numeric("other");
+        const minimumEvidence = controls.evidence.value;
+        return rows
+          .filter((row) => controls.scenario.value === "all" || row.scenario === controls.scenario.value)
+          .filter((row) => controls.job.value === "all" || row.job_family === controls.job.value)
+          .filter((row) => {
+            if (minimumEvidence === "all") return true;
+            const level = String(row.overall_evidence_level || "UNKNOWN").toUpperCase();
+            return (evidenceRank[level] ?? 4) <= (evidenceRank[minimumEvidence] ?? 4);
+          })
+          .map((row) => {
+            const base = controls.basis.value === "fund" ? row.monthly_net_with_fund : row.monthly_net_cash;
+            return { ...row, adjustedSavings: Number(base || 0) + incomeDelta - costDelta };
+          });
+      }
+
+      function sortedRows(items) {
+        const copy = [...items];
+        if (controls.sort.value === "upfront") return copy.sort((a, b) => Number(a.upfront_cash ?? Infinity) - Number(b.upfront_cash ?? Infinity));
+        if (controls.sort.value === "burden") return copy.sort((a, b) => Number(a.rent_burden_pct ?? Infinity) - Number(b.rent_burden_pct ?? Infinity));
+        if (controls.sort.value === "evidence") return copy.sort((a, b) => (evidenceRank[a.overall_evidence_level] ?? 4) - (evidenceRank[b.overall_evidence_level] ?? 4) || b.adjustedSavings - a.adjustedSavings);
+        return copy.sort((a, b) => b.adjustedSavings - a.adjustedSavings);
+      }
+
+      function renderMetrics(items) {
+        const bySavings = [...items].sort((a, b) => b.adjustedSavings - a.adjustedSavings);
+        const byUpfront = items.filter((row) => Number.isFinite(Number(row.upfront_cash)))
+          .sort((a, b) => Number(a.upfront_cash) - Number(b.upfront_cash));
+        const burdenRows = items.filter((row) => Number.isFinite(Number(row.rent_burden_pct)));
+        const averageBurden = burdenRows.length ? burdenRows.reduce((sum, row) => sum + Number(row.rent_burden_pct), 0) / burdenRows.length : null;
+        const best = bySavings[0];
+        const upfront = byUpfront[0];
+
+        $("metric-rows").textContent = `${items.length} / ${rows.length}`;
+        $("metric-rows-note").textContent = controls.basis.value === "fund" ? "现金加个人公积金口径" : "纯现金口径";
+        $("metric-best").textContent = best ? money(best.adjustedSavings) : "—";
+        $("metric-best").className = `metric-value ${best && best.adjustedSavings >= 0 ? "positive" : "negative"}`;
+        $("metric-best-note").textContent = best ? `${best.city || "未填城市"} · ${best.district || "未填区县"} · ${best.scenario || "未填情景"}` : "没有可用情景";
+        $("metric-upfront").textContent = upfront ? money(upfront.upfront_cash) : "—";
+        $("metric-upfront-note").textContent = upfront ? `${upfront.city || "未填城市"} · 押付与一次性支出基准` : "没有可用首月现金";
+        $("metric-burden").textContent = averageBurden === null ? "—" : pct(averageBurden);
+      }
+
+      function renderChart(items) {
+        const top = [...items].sort((a, b) => b.adjustedSavings - a.adjustedSavings).slice(0, 12);
+        const maxMagnitude = Math.max(1, ...top.map((row) => Math.abs(row.adjustedSavings)));
+        $("chart-caption").textContent = `展示当前条件下月结余最高的 ${top.length} 个情景；负值表示调整后现金不足。`;
+        $("ranking-chart").innerHTML = top.length ? top.map((row) => {
+          const width = Math.max(4, Math.abs(row.adjustedSavings) / maxMagnitude * 100);
+          const good = row.adjustedSavings >= 0;
+          return `
+            <div class="bar-row">
+              <div class="bar-label" title="${escapeHtml(`${row.city} ${row.district}`)}">
+                <strong>${escapeHtml(row.city || "未填城市")} · ${escapeHtml(row.district || "未填")}</strong>
+                <span>${escapeHtml(row.scenario || "未填情景")}</span>
+              </div>
+              <div class="bar-track" aria-hidden="true"><div class="bar-fill ${good ? "good" : "bad"}" style="width:${width.toFixed(2)}%"></div></div>
+              <div class="bar-amount ${good ? "positive" : "negative"}">${money(row.adjustedSavings)}</div>
+            </div>`;
+        }).join("") : `<div class="empty">当前筛选条件下没有可展示的排名。</div>`;
+      }
+
+      function renderTable(items) {
+        const body = $("detail-body");
+        body.innerHTML = items.map((row) => {
+          const flags = String(row.quality_flags || "").split(";").filter(Boolean);
+          return `
+            <tr>
+              <td><strong>${escapeHtml(row.city || "未填城市")}</strong><span class="sub">${escapeHtml(row.district || "未填区县")}</span></td>
+              <td>${escapeHtml(row.job_family || "未填岗位族")}<span class="sub">${escapeHtml(row.scenario || "未填情景")}</span></td>
+              <td class="money">${money(row.monthly_gross)}<span class="sub">${escapeHtml(row.annual_months ?? "")} 个月年发</span></td>
+              <td class="money ${row.adjustedSavings >= 0 ? "positive" : "negative"}">${money(row.adjustedSavings)}<span class="sub">${controls.basis.value === "fund" ? "含个人公积金" : "纯现金"}</span></td>
+              <td class="money">${money(row.upfront_cash)}</td>
+              <td>${pct(row.rent_burden_pct)}</td>
+              <td><span class="tag">${escapeHtml(row.overall_evidence_level || "?")}</span><span class="sub">薪资 n=${escapeHtml(row.salary_sample_n ?? "—")} · 房租 n=${escapeHtml(row.rent_sample_n ?? "—")}</span></td>
+              <td><div class="flags">${flags.length ? flags.map(escapeHtml).join(" · ") : "无"}</div><div class="source">${escapeHtml(row.source_keys || "未填来源键")}</div></td>
+            </tr>`;
+        }).join("");
+        $("empty-state").hidden = items.length > 0;
+        body.hidden = items.length === 0;
+      }
+
+      function renderNotes() {
+        $("note-list").innerHTML = (data.notes || []).map((note) => `<li>${escapeHtml(note)}</li>`).join("");
+        $("cutoff").textContent = data.data_cutoff || "未填写";
+        $("lease-months").textContent = `${data.lease_months || 12} 个月`;
+      }
+
+      function render() {
+        const items = sortedRows(adjustedRows());
+        renderMetrics(items);
+        renderChart(items);
+        renderTable(items);
+      }
+
+      Object.values(controls).forEach((control) => control.addEventListener("input", render));
+      $("reset-button").addEventListener("click", () => {
+        ["income", "rent", "food", "commute", "utility", "other"].forEach((key) => { controls[key].value = "0"; });
+        controls.scenario.value = "all";
+        controls.job.value = "all";
+        controls.basis.value = "cash";
+        controls.sort.value = "savings";
+        controls.evidence.value = "all";
+        render();
+      });
+
+      renderNotes();
+      render();
+    })();
+  </script>
+</body>
+</html>
